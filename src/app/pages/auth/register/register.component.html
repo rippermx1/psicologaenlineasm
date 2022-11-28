@@ -1,0 +1,36 @@
+<mat-card class="m-10">
+    <mat-card-content>
+        <div class="text-center"><h2>Register</h2></div>
+        <div class="container-v">
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your email</mat-label>
+                <input matInput placeholder="pat@example.com" [formControl]="email" required #userEmail>
+                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                <button mat-icon-button matSuffix><mat-icon>email</mat-icon></button>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required #userPwd>
+                <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+    </mat-card-content>
+    <mat-card-actions class="container-h">
+        <a mat-button routerLink="/login">Acceso</a>
+        <a mat-stroked-button color="accent" (click)="authService.signUp(userEmail.value, userPwd.value)">Registro</a>
+    </mat-card-actions>
+     <!-- Continue with Google -->
+     <div class="formGroup">
+        <button
+          type="button"
+          class="btn googleBtn"
+          (click)="authService.googleAuth()"
+        >
+          <i class="fab fa-google-plus-g"></i>
+          Continue with Google
+        </button>
+      </div>
+</mat-card>

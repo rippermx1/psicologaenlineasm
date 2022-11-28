@@ -1,0 +1,32 @@
+<mat-card class="m-10">
+    <mat-card-content>
+        <div class="text-center"><h2>Acceso</h2></div>
+        <div class="btn-google" (click)="loginWithGoogle()">
+            <img src="assets/btn_google_light_normal_ios.svg" alt=""/>
+            <p>Acceder con Google</p>
+        </div>
+        <div class="container-v pt-10">
+            <mat-form-field appearance="fill" class="mb-10">
+                <mat-label>Enter your email</mat-label>
+                <input matInput placeholder="pat@example.com" [formControl]="email" required>
+                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                <button mat-icon-button matSuffix><mat-icon>email</mat-icon></button>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="mb-10">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+                <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div class="container-v">
+            <a class="forgot-password" routerLink="/forgot-password">¿Olvidaste tu Contraseña?</a>
+        </div>
+    </mat-card-content>
+    <mat-card-actions class="container-h">
+        <a mat-stroked-button color="accent" (click)="login()">Acceder</a>
+        <a mat-button routerLink="/register">Registro</a>
+    </mat-card-actions>
+</mat-card>

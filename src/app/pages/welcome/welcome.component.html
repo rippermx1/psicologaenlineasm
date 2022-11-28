@@ -1,0 +1,100 @@
+<mat-stepper orientation="vertical" [linear]="true" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Bienvenido</ng-template>
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>¿Cuál es tu nombre?</mat-label>
+                <input matInput placeholder="" formControlName="name">
+            </mat-form-field>
+            <div class="to-right">
+                <button mat-button matStepperNext>Continuar...</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Hola {{firstFormGroup.controls['name'].value ? (", " +
+                firstFormGroup.controls['name'].value) + ". Queremos Conocerte Más." : ''}}...</ng-template>
+            <p>¿Cuáles son tus Apellidos?</p>
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Apellido Paterno</mat-label>
+                <input matInput formControlName="lastFatherName" placeholder="">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Apellido Materno</mat-label>
+                <input matInput formControlName="lastMotherName" placeholder="">
+            </mat-form-field>
+            <p>¿Cuál es tu Edad?</p>
+            <ng-template matStepLabel>¿Qué Edad Tienes?</ng-template>
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Edad</mat-label>
+                <input matInput formControlName="age" placeholder="">
+            </mat-form-field>
+            <div class="to-right">
+                <button mat-button matStepperPrevious>Volver</button>
+                <button mat-button matStepperNext>Continuar...</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+            <ng-template matStepLabel>Motivo de Consulta</ng-template>
+            <p class="fs-12">¿Cuál es el motivo de tu Consulta?</p>
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Con tus propias palabras...</mat-label>
+                <input matInput formControlName="subject" placeholder="">
+            </mat-form-field>
+            <p class="fs-12">¿Estarías dispuesto a continuar con el proceso Agendando una Cita con uno de nuestros
+                Profesionales?</p>
+            <section class="example-section">
+                <mat-checkbox class="example-margin" formControlName="agreement" [indeterminate]="true"
+                    [labelPosition]="'before'">
+                    Estoy Dispuesto
+                </mat-checkbox>
+            </section>
+            <div class="to-right">
+                <button mat-button matStepperPrevious>Volver</button>
+                <button mat-button matStepperNext>Continuar...</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="fourthFormGroup">
+        <form [formGroup]="fourthFormGroup">
+            <ng-template matStepLabel>Coordinemos...</ng-template>
+            <p class="fs-12">A continuación podrás seleccionar el día que te parezca más adecuado.</p>
+            <mat-calendar></mat-calendar>
+            <div class="to-right">
+                <button mat-button matStepperPrevious>Volver</button>
+                <button mat-button matStepperNext>Continuar...</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="fifthFormGroup">
+        <form [formGroup]="fifthFormGroup">
+            <ng-template matStepLabel>Horas Disponibles</ng-template>
+            <p class="fs-12">A continuación podrás seleccionar la hora del día que te parezca más adecuada.</p>
+            <mat-chip-list aria-label="Horas Disponibles">
+                <mat-chip>9:00 AM</mat-chip>
+                <mat-chip>10:00 AM</mat-chip>
+                <mat-chip>11:00 AM</mat-chip>
+            </mat-chip-list>
+            <mat-chip-list aria-label="Horas Disponibles">
+                <mat-chip>13:00 PM</mat-chip>
+                <mat-chip>14:00 PM</mat-chip>
+                <mat-chip selected>15:00 PM</mat-chip>
+            </mat-chip-list>
+            <div class="to-right">
+                <button mat-button matStepperPrevious>Volver</button>
+                <button mat-button matStepperNext>Continuar...</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+    </mat-step>
+</mat-stepper>
